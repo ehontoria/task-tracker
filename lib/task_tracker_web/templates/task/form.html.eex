@@ -13,6 +13,10 @@
   <%= checkbox f, :done %>
   <%= error_tag f, :done %>
 
+  <%= label f, :user_id %>
+  <%= text_input f, :user_id %>
+  <%= error_tag f, :user_id %>
+
   <div>
     <%= submit "Save" %>
   </div>
