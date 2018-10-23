@@ -1,3 +1,5 @@
-<section class="phx-hero">
-  <p>Please check "/tasks" and "/users"</p>
-</section>
+<div class="row">
+  <div class="col-12">
+    <h1>Welcome to Task Tracker</h1>
+  </div>
+</div>
