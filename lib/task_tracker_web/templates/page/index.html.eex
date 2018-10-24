@@ -2,4 +2,13 @@
   <div class="col-12">
     <h1>Welcome to Task Tracker</h1>
   </div>
+  <div>
+    <%= if @current_user do %>
+    <!-- Idea: run Enum.filter on all tasks and if the user_id is the current_user id then show it? Essentially
+    the index function for the tasks page, except filtered on which tasks to throw in there -->
+     <p>Need to figure out how to show all of a users current tasks here</p>
+    <% else %>
+      <p>No tasks for this user</p>
+    <% end %>
+  </div>
 </div>

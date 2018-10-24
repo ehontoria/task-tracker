@@ -10,13 +10,8 @@
   <body>
       <div class="container">
         <nav role="nav navbar">
-          <div>
-            <ul>
-              <li>
                 <a class="nav-link" href="/">Home</a>
-              </li>
-            </ul>
-          </div>
+                <a class="nav-link" href="/tasks/new">New Task</a>
 
           <div>
             <%= if @current_user do %>

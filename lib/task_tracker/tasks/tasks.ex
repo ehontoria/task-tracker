@@ -48,11 +48,20 @@ defmodule TaskTracker.Tasks do
       iex> create_task(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
+      Need to figure out how to do the error case properly...if there is no id then what do I do?
   """
-  def create_task(attrs \\ %{}) do
-    %Task{}
-    |> Task.changeset(attrs)
-    |> Repo.insert()
+  def create_task(%{"done" => done, "name" => name, "user_name" => user_name, "minutes_spent" => minutes_spent}) do
+    user = TaskTracker.Users.get_user_by_name(user_name)
+    if (user) do
+      user_id = user.id
+      minutes_15 = rem(String.to_integer(minutes_spent), 15) * 15
+      %Task{}
+      |> Task.changeset(%{name: name, done: done, user_id: user_id, minutes_spent: minutes_15})
+      |> Repo.insert()
+    else
+      task = %Task{}.changeset(%{name: name, done: done, user_id: user, minutes_spent: minutes_spent})
+      {:error, task}
+    end
   end
 
   @doc """

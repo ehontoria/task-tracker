@@ -14,7 +14,12 @@
 
   <li>
     <strong>User:</strong>
-    <%= @task.user_id %>
+    <%= TaskTracker.Users.get_user(@task.user_id).name %>
+  </li>
+
+  <li>
+    <%= @task.minutes_spent %>
+  </li>
 
 </ul>
 
