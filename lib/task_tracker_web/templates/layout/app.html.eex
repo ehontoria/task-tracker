@@ -11,7 +11,10 @@
       <div class="container">
         <nav role="nav navbar">
                 <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/tasks/new">New Task</a>
+                <%= link "New Task", to: Routes.task_path(@conn, :new) %>
+                <%= if @current_user do %>
+                  <%= link "My Profile", to: Routes.user_path(@conn, :show, @current_user) %>
+                <% end %>
 
           <div>
             <%= if @current_user do %>

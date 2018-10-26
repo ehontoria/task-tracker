@@ -54,11 +54,17 @@ defmodule TaskTracker.Users do
       iex> create_user(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
+      %{"name" => name, "ismanager" => ismanager, "manager_name" => manager_name}
   """
-  def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> Repo.insert()
+  def create_user(%{"name" => name, "ismanager" => ismanager, "manager_name" => manager_name}) do
+    manager = get_user_by_name(manager_name)
+    if ((name == nil) or (name == manager_name) or ((manager != nil) and manager.ismanager)) do
+      %User{}
+      |> User.changeset(%{name: name, ismanager: ismanager, manager_name: manager_name})
+      |> Repo.insert()
+    else 
+      {:error, User.changeset(%User{}, %{name: name, ismanager: ismanager, manager_name: manager_name})}
+    end
   end
 
   @doc """

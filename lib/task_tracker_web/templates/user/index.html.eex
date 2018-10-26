@@ -4,14 +4,16 @@
   <thead>
     <tr>
       <th>Name</th>
-
-      <th></th>
+      <th>Are you a manager?</th>
+      <th>Manager</th>
     </tr>
   </thead>
   <tbody>
 <%= for user <- @users do %>
     <tr>
       <td><%= user.name %></td>
+      <td><%= user.ismanager %></td>
+      <td><%= user.manager_name %></td>
 
       <td>
         <%= link "Show", to: Routes.user_path(@conn, :show, user) %>

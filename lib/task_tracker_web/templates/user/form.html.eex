@@ -11,6 +11,14 @@
     <%= error_tag f, :name %>
   </div>
 
+  <%= label f, :Is_manager? %>
+  <%= checkbox f, :ismanager %>
+  <%= error_tag f, :ismanager %>
+
+  <%= label f, :Manager %>
+  <%= text_input f, :manager_name %>
+  <%= error_tag f, :manager_name %>
+
   <div>
     <%= submit "Register" %>
   </div>

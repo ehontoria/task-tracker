@@ -23,7 +23,9 @@ defmodule TaskTrackerWeb.UserController do
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Unable to create user.")
+        |> redirect(to: Routes.page_path(conn, :index))
     end
   end
 

@@ -54,7 +54,7 @@ defmodule TaskTracker.Tasks do
     user = TaskTracker.Users.get_user_by_name(user_name)
     if (user) do
       user_id = user.id
-      minutes_15 = rem(String.to_integer(minutes_spent), 15) * 15
+      minutes_15 = trunc(String.to_integer(minutes_spent)/15) * 15
       %Task{}
       |> Task.changeset(%{name: name, done: done, user_id: user_id, minutes_spent: minutes_15})
       |> Repo.insert()
