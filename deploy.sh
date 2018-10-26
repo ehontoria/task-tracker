@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export MIX_ENV=prod
-export PORT=4792
+export PORT=4795
 export NODEBIN=`pwd`/assets/node_modules/.bin
 export PATH="$PATH:$NODEBIN"
 
@@ -16,12 +16,12 @@ mix compile
 mix phx.digest
 
 echo "Generating release..."
-mix release
+mix release --env=prod
 
 #echo "Stopping old copy of app, if any..."
 #_build/prod/rel/draw/bin/practice stop || true
 
 echo "Starting app..."
 
-_build/prod/rel/memory/bin/memory foreground
+_build/prod/rel/task_tracker/bin/task_tracker start
 

@@ -9,7 +9,7 @@ defmodule TaskTracker.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      TaskTracker.Repo,
+      TaskTracker2.Repo,
       # Start the endpoint when the application starts
       TaskTrackerWeb.Endpoint
       # Starts a worker by calling: TaskTracker.Worker.start_link(arg)

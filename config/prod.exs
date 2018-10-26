@@ -10,8 +10,11 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :task_tracker, TaskTrackerWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
+  server: true,
+  root: ".",
+  version: Application.spec(:phoenix_distillery, :vsn),
+  http: [:inet6, port: {:system, "PORT"}],
+  url: [host: "tasks2.hontoria.online", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -22,7 +25,7 @@ config :logger, level: :info
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-#     config :task_tracker, TaskTrackerWeb.Endpoint,
+#     config :memory, MemoryWeb.Endpoint,
 #       ...
 #       url: [host: "example.com", port: 443],
 #       https: [
@@ -46,7 +49,7 @@ config :logger, level: :info
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
 #
-#     config :task_tracker, TaskTrackerWeb.Endpoint,
+#     config :memory, MemoryWeb.Endpoint,
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
@@ -61,11 +64,27 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :task_tracker, TaskTrackerWeb.Endpoint, server: true
+#     config :memory, MemoryWeb.Endpoint, server: true
 #
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"
+
+# In this file, we keep production configuration that
+# you'll likely want to automate and keep away from
+# your version control system.
+#
+# You should document the content of this
+# file or create a script for recreating it, since it's
+# kept out of version control and might be hard to recover
+# or recreate for your teammates (or yourself later on).
+
+# Configure your database
+config :task_tracker, TaskTracker2.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "task_tracker",
+  hostname: "localhost",
+  pool_size: 10
