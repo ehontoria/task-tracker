@@ -8,7 +8,7 @@
 use Mix.Config
 
 config :task_tracker,
-  ecto_repos: [TaskTracker2.Repo]
+  ecto_repos: [TaskTracker.Repo]
 
 # Configures the endpoint
 config :task_tracker, TaskTrackerWeb.Endpoint,
