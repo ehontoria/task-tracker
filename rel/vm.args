@@ -1,5 +1,5 @@
 ## Name of the node
--name tasks2@127.0.0.1
+-name tasks3@127.0.0.1
 
 ## Cookie for distributed erlang
 -setcookie <%= release.profile.cookie %>

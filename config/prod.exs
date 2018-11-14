@@ -13,8 +13,8 @@ config :task_tracker, TaskTrackerWeb.Endpoint,
   server: true,
   root: ".",
   version: Application.spec(:phoenix_distillery, :vsn),
-  http: [:inet6, port: {:system, "PORT"}],
-  url: [host: "tasks2.hontoria.online", port: 80],
+  http: [:inet6, port: System.get_env("PORT") || 4000],
+  url: [host: "tasks3.hontoria.online", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
