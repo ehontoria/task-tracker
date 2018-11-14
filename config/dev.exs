@@ -67,7 +67,7 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
-config :task_tracker, TaskTracker.Repo,
+config :task_tracker, TaskTracker3.Repo,
   username: "postgres",
   password: "postgres",
   database: "task_tracker_dev",

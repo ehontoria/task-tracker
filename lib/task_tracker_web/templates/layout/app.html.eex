@@ -9,30 +9,6 @@
   </head>
   <body>
       <div class="container">
-        <nav role="nav navbar">
-                <a class="nav-link" href="/">Home</a>
-                <%= link "New Task", to: Routes.task_path(@conn, :new) %>
-                <%= if @current_user do %>
-                  <%= link "My Profile", to: Routes.user_path(@conn, :show, @current_user) %>
-                <% end %>
-
-          <div>
-            <%= if @current_user do %>
-              <p>
-                User: <%= @current_user.name %> |
-                <%= link("Sign out", to: Routes.session_path(@conn, :delete), method: :delete) %>
-              </p>
-              <% else %>
-                <%= form_for @conn, Routes.session_path(@conn, :create),
-                      [class: "form-inline"], fn f -> %>
-                <%= text_input f, :name, class: "form-control" %>
-                <%= submit "Sign in", class: "btn btn-secondary"%>
-                | <%= link "Register", to: Routes.user_path(@conn, :new) %>
-              <% end %>
-            <% end %>
-          </div>
-        </nav>
-
         <div class="row">
           <div class="col-12">
             <%= if get_flash(@conn, :info) do %>

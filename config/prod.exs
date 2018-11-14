@@ -82,7 +82,7 @@ config :logger, level: :info
 # or recreate for your teammates (or yourself later on).
 
 # Configure your database
-config :task_tracker, TaskTracker2.Repo,
+config :task_tracker, TaskTracker3.Repo,
   username: "postgres",
   password: "postgres",
   database: "task_tracker",

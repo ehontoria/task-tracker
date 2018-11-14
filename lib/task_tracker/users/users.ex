@@ -4,7 +4,7 @@ defmodule TaskTracker.Users do
   """
 
   import Ecto.Query, warn: false
-  alias TaskTracker2.Repo
+  alias TaskTracker3.Repo
 
   alias TaskTracker.Users.User
 

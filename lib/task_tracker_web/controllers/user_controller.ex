@@ -6,12 +6,12 @@ defmodule TaskTrackerWeb.UserController do
 
   def index(conn, _params) do
     users = Users.list_users()
-    render(conn, "index.html", users: users)
+    render(conn, "index.json", users: users)
   end
 
   def new(conn, _params) do
     changeset = Users.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.json", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -20,24 +20,24 @@ defmodule TaskTrackerWeb.UserController do
         conn
         |> put_flash(:info, "User created successfully.")
         |> put_session(:user_id, user.id)
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> render("show.json", user: user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_flash(:error, "Unable to create user.")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> render("error.json", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    render(conn, "show.json", user: user)
   end
 
   def edit(conn, %{"id" => id}) do
     user = Users.get_user!(id)
     changeset = Users.change_user(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
+    render(conn, "edit.json", user: user, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
@@ -47,10 +47,10 @@ defmodule TaskTrackerWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> render("show.json", user: user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset)
+        render(conn, "error.json", changeset: changeset)
     end
   end
 
@@ -60,6 +60,6 @@ defmodule TaskTrackerWeb.UserController do
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.user_path(conn, :index))
+    |> render("index.json", user: user)
   end
 end
